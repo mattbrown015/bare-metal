@@ -2,3 +2,5 @@ bare-metal
 
 *.o
 *.map
+
+*.bak
