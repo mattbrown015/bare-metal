@@ -17,16 +17,16 @@ HAL_MACROS=-DSTM32L433xx
 CFLAGS=-Ofast -g3 -Wall -Wpedantic $(ARCH_FLAGS) $(HAL_MACROS) $(INCLUDE_PATH)
 
 bare-metal: main.o reset-handler.o interrupt-vectors.o
-	$(LD) -nostdlib -Wl,--script=256kflash-48kram.ld -Wl,-Map=$@.map $^ -o $@
+	$(LD) $(ARCH_FLAGS) -nostdlib -Wl,--script=256kflash-48kram.ld -Wl,-Map=$@.map $^ -o $@
 
 main.o: main.c
 	$(CC) -c $(CFLAGS) -o $@ $<
 
 reset-handler.o: reset-handler.s
-	$(AS) -c -o $@ $<
+	$(AS) -c $(ARCH_FLAGS) -o $@ $<
 
 interrupt-vectors.o: interrupt-vectors.s
-	$(AS) -c -o $@ $<
+	$(AS) -c $(ARCH_FLAGS) -o $@ $<
 
 .PHONY: clean
 clean:
