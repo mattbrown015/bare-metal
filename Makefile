@@ -16,8 +16,8 @@ ARCH_FLAGS=-mcpu=cortex-m4 -mthumb
 HAL_MACROS=-DSTM32L433xx
 CFLAGS=-Ofast -g3 -Wall -Wpedantic $(ARCH_FLAGS) $(HAL_MACROS) $(INCLUDE_PATH)
 
-bare-metal: main.o reset-handler.o interrupt-vectors.o
-	$(LD) $(ARCH_FLAGS) -nostdlib -Wl,--script=256kflash-48kram.ld -Wl,-Map=$@.map $^ -o $@
+bare-metal.elf: main.o reset-handler.o interrupt-vectors.o
+	$(LD) $(ARCH_FLAGS) -nostdlib -Wl,--script=256kflash-48kram.ld -Wl,-Map=$(basename $@).map $^ -o $@
 
 main.o: main.c
 	$(CC) -c $(CFLAGS) -o $@ $<
@@ -30,4 +30,4 @@ interrupt-vectors.o: interrupt-vectors.s
 
 .PHONY: clean
 clean:
-	del bare-metal *.o *.map
+	del bare-metal.elf *.o *.map
