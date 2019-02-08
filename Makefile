@@ -16,9 +16,11 @@ ARCH_FLAGS=-mcpu=cortex-m4 -mthumb
 HAL_MACROS=-DSTM32L433xx
 CFLAGS=-Ofast -g3 -Wall -Wpedantic $(ARCH_FLAGS) $(HAL_MACROS) $(INCLUDE_PATH)
 
+TARGET=bare-metal.elf
+
 OBJECTS=main.o reset-handler.o interrupt-vectors.o
 
-bare-metal.elf: 256kflash-48kram.ld $(OBJECTS)
+$(TARGET): 256kflash-48kram.ld $(OBJECTS)
 	$(LD) $(ARCH_FLAGS) -nostdlib -Wl,--script=$< -Wl,-Map=$(basename $@).map $(OBJECTS) -o $@
 
 main.o: main.c
@@ -32,4 +34,4 @@ interrupt-vectors.o: interrupt-vectors.s
 
 .PHONY: clean
 clean:
-	del bare-metal.elf *.o *.map
+	del $(TARGET) *.o *.map
