@@ -23,8 +23,7 @@ OBJECTS=main.o reset-handler.o interrupt-vectors.o
 $(TARGET): 256kflash-48kram.ld $(OBJECTS)
 	$(LD) $(ARCH_FLAGS) -nostdlib -Wl,--script=$< -Wl,-Map=$(basename $@).map $(OBJECTS) -o $@
 
-main.o: main.c
-	$(CC) -c $(CFLAGS) -o $@ $<
+main.o:
 
 reset-handler.o: reset-handler.s
 	$(AS) -c $(ARCH_FLAGS) -o $@ $<
