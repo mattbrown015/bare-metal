@@ -14,7 +14,7 @@ INCLUDE_PATH=-I. -I$(STM32l4_HAL_DRIVER)\inc -I$(CMSIS_DRIVER)\Include -I$(CMSIS
 
 ARCH_FLAGS=-mthumb -mcpu=cortex-m4
 HAL_MACROS=-DSTM32L433xx
-CFLAGS=-g3 -Wall -Wpedantic $(ARCH_FLAGS) $(HAL_MACROS) $(INCLUDE_PATH)
+CFLAGS=-Ofast -g3 -Wall -Wpedantic $(ARCH_FLAGS) $(HAL_MACROS) $(INCLUDE_PATH)
 
 bare-metal: main.o reset-handler.o interrupt-vectors.o
 	$(LD) -nostdlib -Wl,--script=256kflash-48kram.ld -Wl,-Map=$@.map $^ -o $@
