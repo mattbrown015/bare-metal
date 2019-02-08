@@ -12,7 +12,7 @@ LD=$(ARM_GCC_PATH)\arm-none-eabi-gcc.exe
 
 INCLUDE_PATH=-I. -I$(STM32l4_HAL_DRIVER)\inc -I$(CMSIS_DRIVER)\Include -I$(CMSIS_DEVICE)\Include
 
-ARCH_FLAGS=-mthumb -mcpu=cortex-m4
+ARCH_FLAGS=-mcpu=cortex-m4 -mthumb
 HAL_MACROS=-DSTM32L433xx
 CFLAGS=-Ofast -g3 -Wall -Wpedantic $(ARCH_FLAGS) $(HAL_MACROS) $(INCLUDE_PATH)
 
