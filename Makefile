@@ -18,8 +18,8 @@ CFLAGS=-Ofast -g3 -Wall -Wpedantic $(ARCH_FLAGS) $(HAL_MACROS) $(INCLUDE_PATH)
 
 OBJECTS=main.o reset-handler.o interrupt-vectors.o
 
-bare-metal.elf: $(OBJECTS)
-	$(LD) $(ARCH_FLAGS) -nostdlib -Wl,--script=256kflash-48kram.ld -Wl,-Map=$(basename $@).map $^ -o $@
+bare-metal.elf: 256kflash-48kram.ld $(OBJECTS)
+	$(LD) $(ARCH_FLAGS) -nostdlib -Wl,--script=$< -Wl,-Map=$(basename $@).map $(OBJECTS) -o $@
 
 main.o: main.c
 	$(CC) -c $(CFLAGS) -o $@ $<
