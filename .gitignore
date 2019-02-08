@@ -1,4 +1,8 @@
 bare-metal
+GPATH
+GRTAGS
+GTAGS
+NppGTags.cfg
 
 *.o
 *.map
