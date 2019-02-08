@@ -38,6 +38,7 @@ int main(void) {
     __HAL_RCC_GPIOA_CLK_ENABLE();
 
     LL_GPIO_SetPinMode(GPIOA, LL_GPIO_PIN_7, LL_GPIO_MODE_OUTPUT);
+    LL_GPIO_SetPinSpeed(GPIOA, LL_GPIO_PIN_7, LL_GPIO_SPEED_FREQ_VERY_HIGH);
     
     while (1) {
         LL_GPIO_SetOutputPin(GPIOA, LL_GPIO_PIN_7);
