@@ -12,7 +12,7 @@
 // thing to be done. I did think the SYSCLK could be set
 // before doing the C data initialization and then that would
 // go faster.
-static void sys_clk_init(void) {
+static void sysclk_init(void) {
     // MSI will be enabled and running at 4 MHz after reset as it is the default clock src.
     while (!LL_RCC_MSI_IsReady());
 
@@ -64,7 +64,7 @@ static void sys_clk_init(void) {
 }
 
 int main(void) {
-    sys_clk_init();
+    sysclk_init();
 
     __HAL_RCC_GPIOA_CLK_ENABLE();
 
