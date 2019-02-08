@@ -40,6 +40,7 @@ int main(void) {
     LL_GPIO_SetPinMode(GPIOA, LL_GPIO_PIN_7, LL_GPIO_MODE_OUTPUT);
     
     while (1) {
-        LL_GPIO_TogglePin(GPIOA, LL_GPIO_PIN_7);
+        LL_GPIO_SetOutputPin(GPIOA, LL_GPIO_PIN_7);
+        LL_GPIO_ResetOutputPin(GPIOA, LL_GPIO_PIN_7);
     }
 }
